@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="LXC - Linux Containers : Userspace tools for the Linux kernel containers" />
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>LXC - Linux Containers by lxc</title>
+    <title>LXC - Linux Containers</title>
   </head>
 
   <body>
 
-    <header>
-      <div class="container">
-        <h1>LXC - Linux Containers</h1>
-        <h2>Userspace tools for the Linux kernel containers</h2>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/lxc">View on GitHub</a>
 
-        <section id="downloads">
-          <a href="https://github.com/lxc" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+          <h1 id="project_title">LXC - Linux Containers</h1>
+          <h2 id="project_tagline">Userspace tools for the Linux kernel containers</h2>
 
-    <div class="container">
-      <section id="main_content">
-        <p>Just some initial content.</p>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>LXC is the userspace control package for Linux Containers, a lightweight virtual system mechanism sometimes described as “chroot on steroids”.</p>
+
+<p>LXC builds up from chroot to implement complete virtual systems, adding resource management and isolation mechanisms to Linux’s existing process management infrastructure.</p>
+
+<p>Linux Containers (lxc) implement:</p>
+
+<ul>
+<li>Resource management via “process control groups” (implemented via the cgroup filesystem)</li>
+<li>Resource isolation via new flags to the clone(2) system call (capable of create several types of new namespaces for things like PIDs and network routing)</li>
+<li>Several additional isolation mechanisms (such as the “-o newinstance” flag to the devpts filesystem).</li>
+</ul><p>The LXC package combines these Linux kernel mechanisms to provide a userspace container object, a lightweight virtual system with full resource isolation and resource control for an application or a system.</p>
+
+<p>Linux Containers take a completely different approach than system virtualization technologies such as KVM and Xen, which started by booting separate virtual systems on emulated hardware and then attempted to lower their overhead via paravirtualization and related mechanisms. Instead of retrofitting efficiency onto full isolation, LXC started out with an efficient mechanism (existing Linux process management) and added isolation, resulting in a system virtualization mechanism as scalable and portable as chroot, capable of simultaneously supporting thousands of emulated systems on a single server while also providing lightweight virtualization options to routers and smart phones.</p>
+
+<p>The first objective of this project is to make the life easier for the kernel developers involved in the containers project and especially to continue working on the Checkpoint/Restart new features. The lxc is small enough to easily manage a container with simple command lines and complete enough to be used for other purposes.</p>
       </section>
     </div>
 
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
     
+
   </body>
 </html>
