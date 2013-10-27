@@ -12,6 +12,7 @@
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-45204001-1']);
+  _gaq.push(['_setDomainName', 'linuxcontainers.org']);
   _gaq.push(['_trackPageview']);
 
   (function() {
