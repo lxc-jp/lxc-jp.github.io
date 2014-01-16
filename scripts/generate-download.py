@@ -38,7 +38,7 @@ if __name__ == '__main__':
         file_size = "%skB" % round(int(os.stat(entry).st_size) / 1024, 2)
         file_mdate = time.asctime(time.gmtime(os.path.getmtime(entry)))
 
-        if os.path.exists("%s.asc" % args.path):
+        if os.path.exists("%s.asc" % entry):
             gpg_column = "<a href=\"%s.asc\">%s.asc</a>" % (file_name,
                                                             file_name)
         else:
