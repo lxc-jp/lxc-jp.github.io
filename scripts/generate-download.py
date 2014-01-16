@@ -31,7 +31,8 @@ if __name__ == '__main__':
 
     # Generate the list of download files
     downloads = []
-    for entry in sorted(glob.glob("%s/*.tar.gz" % args.path)):
+    for entry in sorted(glob.glob("%s/*.tar.gz" % args.path),
+                        reverse=True):
         file_name = os.path.basename(entry)
         gpg_name = None
 
