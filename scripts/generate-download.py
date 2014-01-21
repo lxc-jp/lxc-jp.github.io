@@ -37,24 +37,23 @@ if __name__ == '__main__':
         gpg_name = None
 
         file_size = "%skB" % round(int(os.stat(entry).st_size) / 1024, 2)
-        file_mdate = time.asctime(time.gmtime(os.path.getmtime(entry)))
 
         if os.path.exists("%s.asc" % entry):
-            gpg_column = " <a href=\"%s.asc\">(sig)</a>" % file_name
+            gpg_column = " <a href=\"%s.asc\">%s.asc</a>" % (file_name,
+                                                             file_name)
         else:
-            gpg_column = ""
+            gpg_column = "unavailable"
 
-        file_column = "<a href=\"%s\">%s</a>%s" % (file_name, file_name,
-                                                   gpg_column)
+        file_column = "<a href=\"%s\">%s</a>" % (file_name, file_name)
 
-        downloads.append((file_column, file_size, file_mdate))
+        downloads.append((file_column, gpg_column, file_size))
 
     # Generate the html
-    html = """    <table>
+    html = """    <table width="100%">
         <tr>
             <th>Filename</th>
+            <th>GPG signature</th>
             <th>Size</th>
-            <th>Last modified</th>
         </tr>
 """
     for download in downloads:
