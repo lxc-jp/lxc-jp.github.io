@@ -157,9 +157,6 @@ pre, code {
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-
-
-
 }
 
 pre {
@@ -250,6 +247,29 @@ img {
   max-width: 100%;
 }
 
+.nav {
+  border:1px solid #ccc;
+  border-width:1px 0;
+  list-style:none;
+  margin:0;
+  padding:0;
+  text-align:center;
+}
+
+.nav li {
+  display:inline;
+  color: white;
+}
+
+.nav a {
+  color: white;
+}
+
+.nav a:hover {
+  color: #43adff;
+  text-shadow: #0090ff 0px 0px 2px;
+}
+
 /*******************************************************************************
 Full-Width Styles
 *******************************************************************************/
@@ -291,6 +311,7 @@ Full-Width Styles
 
 #header_wrap .inner {
   padding: 50px 10px 30px 10px;
+  text-align: center;
 }
 
 #project_title {
@@ -415,5 +436,4 @@ Small Device Styles
     max-width: 480px;
     font-size: 11px;
   }
-
 }
