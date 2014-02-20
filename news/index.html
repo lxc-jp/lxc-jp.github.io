@@ -43,9 +43,115 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
+        <h2>News</h2>
+
+        <h3>LXC 1.0.0 release announcement<p>20th of February 2013</p></h3>
+        <h4>Introduction</h4>
+        <p>It's with great pleasure that the LXC team is announcing the
+           release of LXC 1.0!
+        </p>
+
+        <p>This release is a significant milestone for us as it marks the first
+           release we consider to be production ready.  It features a
+           wide variety of improvements to container security, a
+           consistent set of tools, updated documentation and an API
+           with multiple bindings.
+        </p>
+
+        <p>Over 60 people contributed their time to this release, making
+           it the best LXC release yet!  The result of all that work can
+           be seen used in areas as diverse as individual laptops,
+           cellphones and cloud instances.  And we are confident that
+           with LXC 1.0, we will see LXC's usage expand even more and be used
+           for a lot of new and exciting projects.
+        </p>
+
+        <h4>Downloads</h4>
+        <p>The release tarballs may be found on our
+           <a href="/downloads">download page</a> and we expect most
+           distributions will very soon ship a packaged version of LXC 1.0.
+        </p>
+
+        <p>Should you be interested in individual changes or just
+           looking at the detailed development history, our main repository is
+           on <a href="https://github.com/lxc/lxc">Github</a>.
+        </p>
+
+        <h4>New features</h4>
+        <p>LXC 1.0 is the result of 10 months of development and over a
+           thousand commits, including a major rework of the way LXC is
+           structured.  It's therefore near impossible to come up with a
+           comprehensive list of changes in this release, however here are
+           some highlights:
+        </p>
+
         <ul>
-          <li>There are no news entry at present.</li>
+          <li>Support for fully unprivileged containers</li>
+          <li>Public stable API (liblxc1)</li>
+          <li>Official API bindings for lua and python3 (in tree)</li>
+          <li>Official API bindings for
+              <a href="https://github.com/lxc/go-lxc">Go</a> and
+              <a href="https://github.com/lxc/ruby-lxc">ruby</a>
+              (out of tree)</li>
+          <li>Flexible backingstore system with support for:
+              <ul>
+                <li>standard directories (default)</li>
+                <li>btrfs</li>
+                <li>zfs</li>
+                <li>lvm</li>
+                <li>loop devices</li>
+                <li>aufs</li>
+                <li>overlayfs</li>
+              </ul></li>
+          <li>Support for cloning and snapshotting containers</li>
+          <li>A reduced but more complete set of command line tools</li>
+          <li>Updated, more complete documentation</li>
+          <li>A new way of creating containers based on centrally
+              generated images</li>
+          <li>Templates letting you create containers running most
+              popular distributions</li>
         </ul>
+
+        <p>A series of blog posts introducing you to LXC and highlighting
+           some of LXC 1.0's new features may be found
+           <a href="https://www.stgraber.org/2013/12/20/lxc-1-0-blog-post-series/">here</a>.
+        </p>
+
+
+        <h4>LXC 1.0 moving forward</h4>
+        <p>LXC 1.0 is the first production ready release of LXC and it
+           comes with a commitment from upstream to maintain it until at
+           least Ubuntu 14.04 LTS reaches end of life in April 2019.
+           That's slightly over 5 years of support!</p>
+
+        <p>We will be maintaining a separate stable branch and will
+           cherry-pick and backport fixes as appropriate.  It's expected
+           that we will have frequent bugfix releases of 1.0 so
+           distributions can simply use those and save themselves the
+           trouble of having to manually follow our stable branch.
+         </p>
+
+        <h4>Bug reports and contact information</h4>
+        <p>Bug reports should be filed on
+           <a href="https://github.com/lxc/lxc/issues">Github</a>
+           or if you do not wish to create an account, by e-mail to the
+           appropriate
+           <a href="https://lists.linuxcontainers.org"> mailing-list</a>.
+           The same goes for your patches. We tend to prefer patches
+           sent to lxc-devel but we also accept pull request directly on
+           Github.
+        </p>
+
+        <p>LXC 1.0 is also the first release after the change of project
+           maintainers which occurred in September 2013. We'd like to thank
+           Daniel Lezcano for all the great work and efforts he's put in
+           LXC over the years and wish him the best of luck in his new
+           projects!</p>
+
+        <p>The current projects maintainers are
+           <a href="http://s3hh.wordpress.com">Serge Hallyn</a>
+           and <a href="https://www.stgraber.org">St&eacute;phane Graber</a>.
+        </p>
       </section>
     </div>
   </body>

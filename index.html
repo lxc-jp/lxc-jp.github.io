@@ -135,7 +135,8 @@ git clone git://github.com/lxc/lxc
 
          <h2>How do I use it?</h2>
 
-         <p>More details are available in the individual manpages
+         <p>More details are available in the individual
+            <a href="https://qa.linuxcontainers.org/master/current/doc/man/">manpages</a>
             shipped with LXC itself. But a basic example of how to
             create, start and stop a container would be as follow:
          </p>
@@ -160,6 +161,12 @@ container.start()
 container.get_ips()
 container.stop()
 </pre>
+
+         <p>Additional examples about the API may be found in various
+            documentation and howtos listed below.
+            The C API documentation itself is auto-generated and available
+            <a href="https://qa.linuxcontainers.org/master/current/doc/api/">here</a>.
+         </p>
 
          <h2>How can I contribute to it?</h2>
          <p>Most development discussion happen on our
@@ -196,21 +203,23 @@ container.stop()
 
 
          <h2>What about stable releases?</h2>
-         <p>LXC's stable release is currently 0.9.0, released in April
-            2013.
+         <p>Our current stable release is LXC 1.0 which was released on
+            the 20th of February 2014."
          </p>
 
-         <p>The next stable release will be LXC 1.0, scheduled for
-            release in early February 2014. LXC 1.0 will be the first LXC
-            release to get an upstream maintained stable branch.
+         <p>This release comes with 5 years of bugfix updates and
+            occasional bugfix only releases (1.0.x). LXC 1.0 is the
+            first release to have a dedicated stable branch with long
+            term support but we expect to repeat this with later major
+            releases.
          </p>
-         <p>
-            As a result,  we will be releasing bugfix-only releases of LXC 1.0
-            until such time as nobody sends patches for inclusion. LXC
-            1.0 will be included in Ubuntu 14.04 LTS which comes with 5 years
-            of security and bugfix updates, that work will be done
-            directly upstream and Ubuntu will be shipping the standard
-            upstream bugfix releases.
+
+         <h2>External resources</h2>
+         <p>Here's a list of external documentation, howtos and other
+            relevant posts about current LXC:
+            <ul>
+                <li><a href="https://www.stgraber.org/2013/12/20/lxc-1-0-blog-post-series/">LXC 1.0 blog post series by Stéphane Graber</a></li>
+            </ul>
          </p>
       </section>
     </div>
