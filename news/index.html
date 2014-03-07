@@ -45,6 +45,66 @@
       <section id="main_content" class="inner">
         <h2>News</h2>
 
+        <h3>LXC 1.0.1 release announcement<p>6th of March 2014</p></h3>
+        <p>This is the first bugfix release for the LXC 1.0 series.</p>
+
+        <h4>Changes</h4>
+        <p>
+          <ul>
+            <li>core: Detect the use of rshared / and properly work
+                around it. This fixes LXC on systemd systems where the mount
+                table would be duplicated in the container and
+                lxc-attach wouldn't attach to the container's rootfs.</li>
+            <li>core: Don't crash on invalid lxc.id_map</li>
+            <li>core: Fix attaching when extra cgroups were setup
+                after the container started</li>
+            <li>core: Fix crash when rebooting container with phys
+                interfaces</li>
+            <li>core: Better detect and report permission problems</li>
+            <li>core: Use common code for any unprivileged action, using
+                newuidmap/newgidmap if available and only falling back
+                to straight writes to uid_map/gid_map if they're not and
+                the user is root</li>
+            <li>core: Fix btrfs snapshot restore</li>
+            <li>core: Fix race in the cloning code potentially leading
+                to data loss</li>
+            <li>core: Don't double-map the root uid/gid</li>
+            <li>core: Fix snapshot restore for overlayfs</li>
+            <li>core: Put logging variables in TLS</li>
+            <li>apparmor: Stop using on-exec for profile changes as it's
+                been proven unreliable on overlayfs at least</li>
+            <li>bash completion: Remove wrong shebang</li>
+            <li>cgmanager: Don't keep an active connection after
+                container start</li>
+            <li>cgmanager: Fix to work with threads</li>
+            <li>doc: Update README</li>
+            <li>lua: Respect --prefix</li>
+            <li>lxc-create: Fix the dir backend to actually respect --dir</li>
+            <li>lxc-device: Properly support wlan devices</li>
+            <li>lxc-ls: Fix --nesting function to work with unprivileged
+                containers</li>
+            <li>lxc-start-ephemeral: Set the tmpfs as 0755 instead of 0777</li>
+            <li>python3: Export missing get_global_config_item function</li>
+            <li>seccomp: Catch violations by init</li>
+            <li>systemd: Fix unit file location</li>
+            <li>templates: Detect system containers inside
+                unprivileged containers (lxc-download)</li>
+            <li>tests: Fix potential hang in lxc-test-concurent</li>
+            <li>upstart: Don't forward requests for LXC_DOMAIN (dnsmasq)</li>
+          </ul>
+        </p>
+
+        <h4>Downloads</h4>
+        <p>The release tarballs may be found on our
+           <a href="/downloads">download page</a> and we expect most
+           distributions will very soon ship a packaged version of LXC 1.0.1.
+        </p>
+
+        <p>Should you be interested in individual changes or just
+           looking at the detailed development history, our stable branch is
+           on <a href="https://github.com/lxc/lxc/tree/stable-1.0">Github</a>.
+        </p>
+
         <h3>LXC 1.0.0 release announcement<p>20th of February 2014</p></h3>
         <h4>Introduction</h4>
         <p>It's with great pleasure that the LXC team is announcing the
