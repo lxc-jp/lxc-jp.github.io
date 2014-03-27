@@ -45,6 +45,69 @@
       <section id="main_content" class="inner">
         <h2>News</h2>
 
+        <h3>LXC 1.0.2 release announcement<p>27th of March 2014</p></h3>
+        <p>This is the second bugfix release for the LXC 1.0 series.</p>
+
+        <h4>Changes</h4>
+        <p>
+          <ul>
+            <li>core: Fix parsing lxc.netwotk.type = none</li>
+            <li>core: Fix race on shutdown causing SIGPIPE being sent to
+                the caller</li>
+            <li>core: Attempt to move back all "phys" NICs on shutdown</li>
+            <li>core: fix stdin,stdout,stderr fds to use the container's
+                own</li>
+            <li>core: Fix typo in newgidmap check</li>
+            <li>core: Fix {get|clear}_config_item with lxc.mount.auto</li>
+            <li>core: Fix a leak of netnsfd</li>
+            <li>core: Don't trigger SYSERROR for optional mounts</li>
+
+            <li>cgmanager: Mutex cgmanager access to avoid races,
+                corruptions and crashes when using threads.</li>
+            <li>cgmanager: Make failure to connect to the daemon a DEBUG
+                instead of ERROR (as we fallback to cgfs in that case)</li>
+            <li>cgmanager: Avoid stray dbus connection</li>
+            <li>cgmanager: Don't attempt to delete invalid cgroups</li>
+
+            <li>lxc-ls: Performance optimization for nesting</li>
+            <li>lxc-ls: Fix memory reporting when swap is enabled</li>
+            <li>lxc-ls: Update help to contain all supports columns</li>
+
+            <li>man: Update lxc-create manpage to cover the "best"
+                backing store</li>
+            <li>man: Update lxc-autostart to document -a and -g</li>
+
+            <li>tests: Don't hardcode the cgroup list</li>
+            <li>tests: Daemonize in startone (silences the test)</li>
+            <li>tests: Support running solely with cgmanager</li>
+            <li>tests: Use busybox when possible (speeds up tests)</li>
+            <li>tests: Fix fd leak in test-concurent</li>
+
+            <li>templates: Update to consistent userns device list</li>
+            <li>busybox template: Don't fail when busybox is a symlink</li>
+            <li>centos template: Shutdown on SIGPWR</li>
+            <li>centos template: Use a sane default for localtime</li>
+            <li>debian template: Symlink /etc/mtab to /proc/mounts</li>
+            <li>debian template: Don't eat the argument after -c</li>
+            <li>fedora template: Shutdown on SIGPWR</li>
+            <li>fedora template: Use a sane default for localtime</li>
+            <li>fedora template: Fix building i686 containers on x86_64</li>
+            <li>opensuse template: Fix syntax error</li>
+          </ul>
+        </p>
+
+        <h4>Downloads</h4>
+        <p>The release tarballs may be found on our
+           <a href="/downloads">download page</a> and we expect most
+           distributions will very soon ship a packaged version of LXC 1.0.2.
+        </p>
+
+        <p>Should you be interested in individual changes or just
+           looking at the detailed development history, our stable branch is
+           on <a href="https://github.com/lxc/lxc/tree/stable-1.0">Github</a>.
+        </p>
+
+
         <h3>LXC 1.0.1 release announcement<p>6th of March 2014</p></h3>
         <p>This is the first bugfix release for the LXC 1.0 series.</p>
 
@@ -71,6 +134,7 @@
             <li>core: Don't double-map the root uid/gid</li>
             <li>core: Fix snapshot restore for overlayfs</li>
             <li>core: Put logging variables in TLS</li>
+
             <li>apparmor: Stop using on-exec for profile changes as it's
                 been proven unreliable on overlayfs at least</li>
             <li>bash completion: Remove wrong shebang</li>
