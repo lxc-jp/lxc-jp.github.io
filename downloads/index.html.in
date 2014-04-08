@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="LXC - Linux Containers : Userspace tools for the Linux kernel containers" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css"/>
 
     <title>LXC - Linux Containers - Downloads</title>
     <script type="text/javascript">

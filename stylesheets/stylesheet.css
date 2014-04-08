@@ -39,6 +39,12 @@ ol, ul {
   list-style: none;
 }
 
+ul li{
+    list-style-type: disc;
+    list-style-position: inside;
+    text-indent: -1em;
+}
+
 blockquote, q {
 }
 

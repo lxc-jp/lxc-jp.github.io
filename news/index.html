@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="LXC - Linux Containers : Userspace tools for the Linux kernel containers" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css"/>
 
     <title>LXC - Linux Containers - News</title>
     <script type="text/javascript">
@@ -44,6 +44,80 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h2>News</h2>
+
+        <h3>LXC 1.0.3 release announcement<p>8th of April 2014</p></h3>
+        <p>This is the third bugfix release for the LXC 1.0 series.</p>
+
+        <h4>Changes</h4>
+        <p>
+          <ul>
+            <li>core: Always initialize netpipe in lxc_spawn.</li>
+            <li>core: Move lxc-monitord.log to LOGPATH instead of LXCPATH.</li>
+            <li>core: Make monitord more resilient to unexpected
+                termination.</li>
+            <li>core: Move lxc-init to /sbin/init.lxc instead of the
+                architecture/distro specific multiarch path. Use path
+                lookup to find it in the container rather than using an
+                hardcoded path.</li>
+            <li>core: Set macvlan default mode to private.</li>
+            <li>core: Check whether rootfs is shared before running the
+                pre-mount hooks.</li>
+
+            <li>apparmor: Update the profiles for current upstream
+                apparmor. This includes tweak to the pivot_root targets
+                and the addition of the ptrace and signal stanzas. Users
+                of older apparmor versions may want to comment the dbus,
+                ptrace and signal stanzas if the parser fails to parse
+                the profile.</li>
+            <li>apparmor: Use an intermediary profile which allows for
+                easier generation of complex rules. This discovered a
+                few problems with the existing profile which has now
+                been fixed. Most of /proc/sys is now properly blocked
+                with exceptions for kernel/shm/*, net/*,
+                kernel/domainname and kernel/hostname.</li>
+            <li>apparmor: block cgroupfs by default in the with-nesting
+                profile, users should now be using cgmanager which
+                doesn't required this.</li>
+            <li>cgmanager: Fix a small cgm_get bug when len == 0.</li>
+            <li>lxc-info: Don't print duplicate lines.</li>
+            <li>sysvinit script: Fix wait_for_bridge to better parse
+                default.conf</li>
+            <li>tools: Don't exit -1, instead use more conventional and
+                consistent exit codes 0 on success, 1 on failure with
+                some (now documented) exceptions for lxc-start.</li>
+
+            <li>archlinux template: Add debugging info for missing
+                network link.</li>
+            <li>archlinux template: Various fixes and cleanups.</li>
+            <li>centos template: Properly set lxc.arch.</li>
+            <li>download template: Make it a bit more resilient to
+                download failures.</li>
+            <li>fedora template: Properly set lxc.arch.</li>
+            <li>gentoo template: Make sure sshd is started.</li>
+            <li>gentoo template: Fix lack of generated locales.</li>
+            <li>gentoo template: Fix lxc-console by setting up a tty.</li>
+            <li>oracle template: Fix upgrade problems by introducing a
+                patch script that's run on upgrade.</li>
+
+            <li>tests: Add a test for the apparmor profiles.</li>
+            <li>tests: Bump timeouts to fix occasional failures on slow
+                ARM builders.</li>
+            <li>tests: Always propagate http_proxy and https_proxy.</li>
+          </ul>
+        </p>
+
+        <h4>Downloads</h4>
+        <p>The release tarballs may be found on our
+           <a href="/downloads">download page</a> and we expect most
+           distributions will very soon ship a packaged version of LXC 1.0.3.
+        </p>
+
+        <p>Should you be interested in individual changes or just
+           looking at the detailed development history, our stable branch is
+           on <a href="https://github.com/lxc/lxc/tree/stable-1.0">Github</a>.
+        </p>
+
+
 
         <h3>LXC 1.0.2 release announcement<p>27th of March 2014</p></h3>
         <p>This is the second bugfix release for the LXC 1.0 series.</p>
