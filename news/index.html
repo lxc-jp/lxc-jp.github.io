@@ -121,66 +121,69 @@
 
 
 
-        <h3>LXC 1.0.2 release announcement<p>27th of March 2014</p></h3>
-        <p>This is the second bugfix release for the LXC 1.0 series.</p>
+        <h3><!-- LXC 1.0.2 release announcement<p>27th of March 2014</p> -->LXC 1.0.2 リリースのお知らせ<p>2014 年 3 月 27 日</p></h3>
+        <p><!-- This is the second bugfix release for the LXC 1.0 series. -->このリリースは LXC 1.0 シリーズの 2 回目のバグフィックスとなるリリースです。</p>
 
-        <h4>Changes</h4>
+        <h4><!-- Changes -->変更点</h4>
         <p>
           <ul>
-            <li>core: Fix parsing lxc.netwotk.type = none</li>
-            <li>core: Fix race on shutdown causing SIGPIPE being sent to
-                the caller</li>
-            <li>core: Attempt to move back all "phys" NICs on shutdown</li>
-            <li>core: fix stdin,stdout,stderr fds to use the container's
-                own</li>
-            <li>core: Fix typo in newgidmap check</li>
-            <li>core: Fix {get|clear}_config_item with lxc.mount.auto</li>
-            <li>core: Fix a leak of netnsfd</li>
-            <li>core: Don't trigger SYSERROR for optional mounts</li>
+            <li><!-- core: Fix parsing lxc.netwotk.type = none -->core: lxc.network.type = none を指定した場合の不具合を修正しました</li>
+            <li><!-- core: Fix race on shutdown causing SIGPIPE being sent to
+                the caller -->core: シャットダウン時にコマンドの呼び出し元に SIGPIPE が送られないように修正しました</li>
+            <li><!-- core: Attempt to move back all "phys" NICs on shutdown -->core: シャットダウン時に全ての "phys" で指定された NIC をホストに戻すようにしました</li>
+            <li><!-- core: fix stdin,stdout,stderr fds to use the container's
+                own -->core: stdin,stdout,stderr fds に関し，コンテナ自身のものを使用するように修正しました</li>
+            <li><!-- core: Fix typo in newgidmap check -->core: newgidmap コマンドの存在チェックがきちんとなされるように修正しました</li>
+            <li><!-- core: Fix {get|clear}_config_item with lxc.mount.auto -->core: {get|clear}_config_item で lxc.mount.auto の情報を扱えるようにしました</li>
+            <li><!-- core: Fix a leak of netnsfd -->core: netns(ネットワーク名前空間)のファイルディスクリプタのリークを修正しました</li>
+            <li><!-- core: Don't trigger SYSERROR for optional mounts -->core: オプショナルなマウントの際に SYSERROR が発生しないようにしました</li>
 
-            <li>cgmanager: Mutex cgmanager access to avoid races,
-                corruptions and crashes when using threads.</li>
-            <li>cgmanager: Make failure to connect to the daemon a DEBUG
-                instead of ERROR (as we fallback to cgfs in that case)</li>
-            <li>cgmanager: Avoid stray dbus connection</li>
-            <li>cgmanager: Don't attempt to delete invalid cgroups</li>
+            <li><!-- cgmanager: Mutex cgmanager access to avoid races,
+                corruptions and crashes when using threads. -->cgmanager: スレッド使用時の競合，データ破損，クラッシュを防ぐために mutex を使って cgmanager へのアクセスを行うようにしました</li>
+            <li><!-- cgmanager: Make failure to connect to the daemon a DEBUG
+                instead of ERROR (as we fallback to cgfs in that case) -->cgmanager: デーモンへの接続が失敗した時は ERROR でなく DEBUG を使用するようにしました (失敗の場合 cgfs へのフォールバックを行うので)</li>
+            <li><!-- cgmanager: Avoid stray dbus connection -->cgmanager: 使われなくなった dbus コネクションが残らないようにしました</li>
+            <li><!-- cgmanager: Don't attempt to delete invalid cgroups -->cgmanager: cgroup のパスが正しくないとき，消去処理を実行しないようにしました</li>
 
-            <li>lxc-ls: Performance optimization for nesting</li>
-            <li>lxc-ls: Fix memory reporting when swap is enabled</li>
-            <li>lxc-ls: Update help to contain all supports columns</li>
+            <li><!-- lxc-ls: Performance optimization for nesting -->lxc-ls: コンテナがネストしている場合のパフォーマンスを最適化しました</li>
+            <li><!-- lxc-ls: Fix memory reporting when swap is enabled -->lxc-ls: スワップ (memory cgroup の swap 制限機能) が有効な場合の表示の不具合を修正しました</li>
+            <li><!-- lxc-ls: Update help to contain all supports columns -->lxc-ls: サポートしているカラム全てをヘルプで表示させるようにしました</li>
 
-            <li>man: Update lxc-create manpage to cover the "best"
-                backing store</li>
-            <li>man: Update lxc-autostart to document -a and -g</li>
+            <li><!-- man: Update lxc-create manpage to cover the "best"
+                backing store -->man: lxc-create manpage でバッキングストアの指定 "best" の説明を追加しました</li>
+            <li><!-- man: Update lxc-autostart to document -a and -g -->man: lxc-autostart の manpage に -a と -g の説明を追加しました</li>
 
-            <li>tests: Don't hardcode the cgroup list</li>
-            <li>tests: Daemonize in startone (silences the test)</li>
-            <li>tests: Support running solely with cgmanager</li>
-            <li>tests: Use busybox when possible (speeds up tests)</li>
-            <li>tests: Fix fd leak in test-concurent</li>
+            <li><!-- tests: Don't hardcode the cgroup list -->tests: cgroup リストのハードコードをやめました</li>
+            <li><!-- tests: Daemonize in startone (silences the test) -->tests: startone でデーモン化を行うようにしました (テストが静かになります)</li>
+            <li><!-- tests: Support running solely with cgmanager -->tests: cgmanager だけが実行されている時のテストをサポートしました</li>
+            <li><!-- tests: Use busybox when possible (speeds up tests) -->tests: busybox が使用可能な場合は使うようにしました (テストのスピードアップのため)</li>
+            <li><!-- tests: Fix fd leak in test-concurent -->tests: test-concurent でのファイルディスクリプタのリークを修正しました</li>
 
-            <li>templates: Update to consistent userns device list</li>
-            <li>busybox template: Don't fail when busybox is a symlink</li>
-            <li>centos template: Shutdown on SIGPWR</li>
-            <li>centos template: Use a sane default for localtime</li>
-            <li>debian template: Symlink /etc/mtab to /proc/mounts</li>
-            <li>debian template: Don't eat the argument after -c</li>
-            <li>fedora template: Shutdown on SIGPWR</li>
-            <li>fedora template: Use a sane default for localtime</li>
-            <li>fedora template: Fix building i686 containers on x86_64</li>
-            <li>opensuse template: Fix syntax error</li>
+            <li><!-- templates: Update to consistent userns device list -->templates: userns を使ったコンテナで共通して (bind マウントして) 使用するデバイスのリストを更新しました</li>
+            <li><!-- busybox template: Don't fail when busybox is a symlink -->busybox template: busybox がシンボリックリンクの場合も失敗しないようにしました</li>
+            <li><!-- centos template: Shutdown on SIGPWR -->centos template: SIGPWR を受け取った時にシャットダウンするようにしました</li>
+            <li><!-- centos template: Use a sane default for localtime -->centos template: 適切なデフォルトの localtime を使うようにしました</li>
+            <li><!-- debian template: Symlink /etc/mtab to /proc/mounts -->debian template: /etc/mtab を /proc/mounts へのシンボリックリンクにしました</li>
+            <li><!-- debian template: Don't eat the argument after -c -->debian template: -c オプションの後の引数を -c で処理しないようにしました</li>
+            <li><!-- fedora template: Shutdown on SIGPWR -->fedora template: SIGPWR を受け取った時にシャットダウンするようにしました</li>
+            <li><!-- fedora template: Use a sane default for localtime -->fedora template: 適切なデフォルトの localtime を使うようにしました</li>
+            <li><!-- fedora template: Fix building i686 containers on x86_64 -->fedora template: x86_64 環境上での i686 コンテナの作成時の不具合を修正しました</li>
+            <li><!-- opensuse template: Fix syntax error -->opensuse template: 文法エラーを修正しました</li>
           </ul>
         </p>
 
-        <h4>Downloads</h4>
-        <p>The release tarballs may be found on our
+        <h4><!-- Downloads -->ダウンロード</h4>
+        <p><!-- The release tarballs may be found on our
            <a href="/downloads">download page</a> and we expect most
-           distributions will very soon ship a packaged version of LXC 1.0.2.
+           distributions will very soon ship a packaged version of LXC 1.0.2. -->
+このリリースの tarball は <a href="https://linuxcontainers.org/downloads">ダウンロードページ</a> から取得できます。
+           そして、各ディストリビューションがすぐに LXC 1.0.2 のパッケージをリリースすることを期待しています。
         </p>
 
-        <p>Should you be interested in individual changes or just
+        <p><!-- Should you be interested in individual changes or just
            looking at the detailed development history, our stable branch is
-           on <a href="https://github.com/lxc/lxc/tree/stable-1.0">Github</a>.
+           on <a href="https://github.com/lxc/lxc/tree/stable-1.0">Github</a>. -->
+           個々の変更点に興味がある場合、そして開発の履歴を見たい場合、stable ブランチは <a href="https://github.com/lxc/lxc/tree/stable-1.0">Github</a> にあります。
         </p>
 
 
