@@ -47,76 +47,93 @@
       <section id="main_content" class="inner">
         <h2>News</h2>
 
-        <h3>LXC 1.0.3 release announcement<p>8th of April 2014</p></h3>
-        <p>This is the third bugfix release for the LXC 1.0 series.</p>
+        <h3><!-- LXC 1.0.3 release announcement<p>8th of April 2014</p> -->LXC 1.0.3 リリースのお知らせ<p>2014 年 4 月 8 日</p></h3>
+        <p><!-- This is the third bugfix release for the LXC 1.0 series. -->このリリースは LXC 1.0 シリーズの 3 回目のバグフィックスとなるリリースです。</p>
 
-        <h4>Changes</h4>
+        <h4><!-- Changes -->変更点</h4>
         <p>
           <ul>
-            <li>core: Always initialize netpipe in lxc_spawn.</li>
-            <li>core: Move lxc-monitord.log to LOGPATH instead of LXCPATH.</li>
-            <li>core: Make monitord more resilient to unexpected
-                termination.</li>
-            <li>core: Move lxc-init to /sbin/init.lxc instead of the
+            <li><!-- core: Always initialize netpipe in lxc_spawn. -->core: lxc_spawn 中で常に netpipe を初期化するようにしました
+                 <ul>
+                  <li>(訳注) 非特権コンテナのリブート時に存在しないパイプに対してメッセージを送ることのないように lxc_spawn 中でパイプを初期化するように修正されています</li>
+                 </ul></li>
+            <li><!-- core: Move lxc-monitord.log to LOGPATH instead of LXCPATH. -->core: lxc-monitord.log が LXCPATH でなく LOGPATH に出力されるようになりました</li>
+            <li><!-- core: Make monitord more resilient to unexpected
+                termination. -->core: monitord の予期しない終了に対してより適切に対応するようにしました</li>
+            <li><!-- core: Move lxc-init to /sbin/init.lxc instead of the
                 architecture/distro specific multiarch path. Use path
                 lookup to find it in the container rather than using an
-                hardcoded path.</li>
-            <li>core: Set macvlan default mode to private.</li>
-            <li>core: Check whether rootfs is shared before running the
-                pre-mount hooks.</li>
+                hardcoded path. -->core: lxc-init をアーキテクチャやディストリビューション依存のパスから /sbin/init.lxc へ移動しました。
+                init.lxc をコンテナ内で見つけるときは、ハードコードされたパスではなく、$PATH を使って見つけます。</li>
+            <li><!-- core: Set macvlan default mode to private. -->core: macvlan のデフォルトモードを private にしました</li>
+            <li><!-- core: Check whether rootfs is shared before running the
+                pre-mount hooks. -->core: pre-mount hook を走らせる前に rootfs が shared でマウントされているかを確認するようにしました</li>
 
-            <li>apparmor: Update the profiles for current upstream
+            <li><!-- apparmor: Update the profiles for current upstream
                 apparmor. This includes tweak to the pivot_root targets
                 and the addition of the ptrace and signal stanzas. Users
                 of older apparmor versions may want to comment the dbus,
                 ptrace and signal stanzas if the parser fails to parse
-                the profile.</li>
-            <li>apparmor: Use an intermediary profile which allows for
+                the profile. -->apparmor: 現時点の upstream の apparmor に対応したプロファイルに更新しました。
+                古い apparmor のユーザは、パーサーがプロファイルのパースに失敗した場合、dbus, ptrace, signal の stanza をコメントにしても問題ありません</li>
+            <li><!-- apparmor: Use an intermediary profile which allows for
                 easier generation of complex rules. This discovered a
                 few problems with the existing profile which has now
                 been fixed. Most of /proc/sys is now properly blocked
                 with exceptions for kernel/shm/*, net/*,
-                kernel/domainname and kernel/hostname.</li>
-            <li>apparmor: block cgroupfs by default in the with-nesting
+                kernel/domainname and kernel/hostname. -->apparmor: 複雑なルールをより簡単に生成できるように中間プロファイルを使うようにしました。
+                これにより既存のプロファイルにいくつか問題が見つかり、それを修正しました。
+                /proc/sys のほとんどは kernel/shm/, net/, kernel/domainname, kernel/hostname に対する例外で適切にブロックされるようになりました。</li>
+            <li><!-- apparmor: block cgroupfs by default in the with-nesting
                 profile, users should now be using cgmanager which
-                doesn't required this.</li>
-            <li>cgmanager: Fix a small cgm_get bug when len == 0.</li>
-            <li>lxc-info: Don't print duplicate lines.</li>
-            <li>sysvinit script: Fix wait_for_bridge to better parse
-                default.conf</li>
-            <li>tools: Don't exit -1, instead use more conventional and
+                doesn't required this. -->apparmor: ネスティング時のプロファイルでデフォルトでは cgroupfs をブロックするようにしました。
+                ユーザは今後 cgroupfs のマウントが不要な cgmanager を使用するべきです</li>
+            <li><!-- cgmanager: Fix a small cgm_get bug when len == 0. -->cgmanager: len == 0 の時発生する cgm_get のバグを修正しました</li>
+            <li><!-- lxc-info: Don't print duplicate lines. -->lxc-info: 重複する行を表示しないようにしました</li>
+            <li><!-- sysvinit script: Fix wait_for_bridge to better parse
+                default.conf -->sysvinit script: より適切に default.conf をパースするように wait_for_bridge を修正しました</li>
+            <li><!-- tools: Don't exit -1, instead use more conventional and
                 consistent exit codes 0 on success, 1 on failure with
-                some (now documented) exceptions for lxc-start.</li>
+                some (now documented) exceptions for lxc-start. -->tools: -1 での exit をやめ、一部例外を除き (ドキュメント化されています)、より一般的かつ一貫した exit code の 0 （成功時）と 1（失敗時）を利用するよう変更しました
+                <ul>
+                 <li>(訳注) 原文では "for lxc-start" とあり、lxc-start に対して一般的で一貫した exit code を採用した事になっていますが、別に lxc-start 以外の lxc-* にも同様の修正が加えられており、例外は lxc-stop に存在するので、上記のような訳としました</li>
+                </ul></li>
 
-            <li>archlinux template: Add debugging info for missing
-                network link.</li>
-            <li>archlinux template: Various fixes and cleanups.</li>
-            <li>centos template: Properly set lxc.arch.</li>
-            <li>download template: Make it a bit more resilient to
-                download failures.</li>
-            <li>fedora template: Properly set lxc.arch.</li>
-            <li>gentoo template: Make sure sshd is started.</li>
-            <li>gentoo template: Fix lack of generated locales.</li>
-            <li>gentoo template: Fix lxc-console by setting up a tty.</li>
-            <li>oracle template: Fix upgrade problems by introducing a
-                patch script that's run on upgrade.</li>
+            <li><!-- archlinux template: Add debugging info for missing
+                network link. -->archlinux template: network link が存在しない場合のデバッグ情報を追加しました</li>
+            <li><!-- archlinux template: Various fixes and cleanups. -->archlinux template: 色々な修正とクリーンアップを行いました</li>
+            <li><!-- centos template: Properly set lxc.arch. -->centos template: lxc.arch を適切に設定するようにしました</li>
+            <li><!-- download template: Make it a bit more resilient to
+                download failures. -->download template: ダウンロードの失敗を少し適切に処理するようにしました
+                <ul>
+                 <li>(訳注) ダウンロードに使う wget のタイムアウト値を 30 秒に設定しています</li>
+                </ul></li>
+            <li><!-- fedora template: Properly set lxc.arch. -->fedora template: lxc.arch を適切に設定するようにしました</li>
+            <li><!-- gentoo template: Make sure sshd is started. -->gentoo template: sshd が起動したのを確認するようにしました</li>
+            <li><!-- gentoo template: Fix lack of generated locales. -->gentoo template: locale が生成されるようにしました</li>
+            <li><!-- gentoo template: Fix lxc-console by setting up a tty. -->gentoo template: lxc-console がきちんと動作するように tty の設定を行うようにしました</li>
+            <li><!-- oracle template: Fix upgrade problems by introducing a
+                patch script that's run on upgrade. -->oracle template: upgrade時に実行されるパッチスクリプトを追加する事によりupdate時の問題を修正しました</li>
 
-            <li>tests: Add a test for the apparmor profiles.</li>
-            <li>tests: Bump timeouts to fix occasional failures on slow
-                ARM builders.</li>
-            <li>tests: Always propagate http_proxy and https_proxy.</li>
+            <li><!-- tests: Add a test for the apparmor profiles. -->tests: apparmorプロファイルのテストを追加しました</li>
+            <li><!-- tests: Bump timeouts to fix occasional failures on slow
+                ARM builders. -->tests: 遅い ARM での失敗のケースの修正としてタイムアウト値を増やしました</li>
+            <li><!-- tests: Always propagate http_proxy and https_proxy. -->tests: 常に http_proxy と https_proxy の値を使用するようにしました</li>
           </ul>
         </p>
 
-        <h4>Downloads</h4>
-        <p>The release tarballs may be found on our
+        <h4><!-- Downloads -->ダウンロード</h4>
+        <p><!-- The release tarballs may be found on our
            <a href="/downloads">download page</a> and we expect most
-           distributions will very soon ship a packaged version of LXC 1.0.3.
+           distributions will very soon ship a packaged version of LXC 1.0.3. -->
+           このリリースの tarball は <a href="https://linuxcontainers.org/downloads">ダウンロードページ</a> から取得できます。
+           そして、各ディストリビューションがすぐに LXC 1.0.3 のパッケージをリリースすることを期待しています。
         </p>
 
-        <p>Should you be interested in individual changes or just
+        <p><!-- Should you be interested in individual changes or just
            looking at the detailed development history, our stable branch is
-           on <a href="https://github.com/lxc/lxc/tree/stable-1.0">Github</a>.
+           on <a href="https://github.com/lxc/lxc/tree/stable-1.0">Github</a>. -->
+           個々の変更点に興味がある場合、そして開発の履歴を見たい場合、stable ブランチは <a href="https://github.com/lxc/lxc/tree/stable-1.0">Github</a> にあります。
         </p>
 
 
@@ -132,18 +149,18 @@
                 the caller -->core: シャットダウン時にコマンドの呼び出し元に SIGPIPE が送られないように修正しました</li>
             <li><!-- core: Attempt to move back all "phys" NICs on shutdown -->core: シャットダウン時に全ての "phys" で指定された NIC をホストに戻すようにしました</li>
             <li><!-- core: fix stdin,stdout,stderr fds to use the container's
-                own -->core: stdin,stdout,stderr fds に関し，コンテナ自身のものを使用するように修正しました</li>
+                own -->core: stdin,stdout,stderr fds に関し、コンテナ自身のものを使用するように修正しました</li>
             <li><!-- core: Fix typo in newgidmap check -->core: newgidmap コマンドの存在チェックがきちんとなされるように修正しました</li>
             <li><!-- core: Fix {get|clear}_config_item with lxc.mount.auto -->core: {get|clear}_config_item で lxc.mount.auto の情報を扱えるようにしました</li>
             <li><!-- core: Fix a leak of netnsfd -->core: netns(ネットワーク名前空間)のファイルディスクリプタのリークを修正しました</li>
             <li><!-- core: Don't trigger SYSERROR for optional mounts -->core: オプショナルなマウントの際に SYSERROR が発生しないようにしました</li>
 
             <li><!-- cgmanager: Mutex cgmanager access to avoid races,
-                corruptions and crashes when using threads. -->cgmanager: スレッド使用時の競合，データ破損，クラッシュを防ぐために mutex を使って cgmanager へのアクセスを行うようにしました</li>
+                corruptions and crashes when using threads. -->cgmanager: スレッド使用時の競合、データ破損、クラッシュを防ぐために mutex を使って cgmanager へのアクセスを行うようにしました</li>
             <li><!-- cgmanager: Make failure to connect to the daemon a DEBUG
                 instead of ERROR (as we fallback to cgfs in that case) -->cgmanager: デーモンへの接続が失敗した時は ERROR でなく DEBUG を使用するようにしました (失敗の場合 cgfs へのフォールバックを行うので)</li>
             <li><!-- cgmanager: Avoid stray dbus connection -->cgmanager: 使われなくなった dbus コネクションが残らないようにしました</li>
-            <li><!-- cgmanager: Don't attempt to delete invalid cgroups -->cgmanager: cgroup のパスが正しくないとき，消去処理を実行しないようにしました</li>
+            <li><!-- cgmanager: Don't attempt to delete invalid cgroups -->cgmanager: cgroup のパスが正しくないとき、消去処理を実行しないようにしました</li>
 
             <li><!-- lxc-ls: Performance optimization for nesting -->lxc-ls: コンテナがネストしている場合のパフォーマンスを最適化しました</li>
             <li><!-- lxc-ls: Fix memory reporting when swap is enabled -->lxc-ls: スワップ (memory cgroup の swap 制限機能) が有効な場合の表示の不具合を修正しました</li>
@@ -176,7 +193,7 @@
         <p><!-- The release tarballs may be found on our
            <a href="/downloads">download page</a> and we expect most
            distributions will very soon ship a packaged version of LXC 1.0.2. -->
-このリリースの tarball は <a href="https://linuxcontainers.org/downloads">ダウンロードページ</a> から取得できます。
+           このリリースの tarball は <a href="https://linuxcontainers.org/downloads">ダウンロードページ</a> から取得できます。
            そして、各ディストリビューションがすぐに LXC 1.0.2 のパッケージをリリースすることを期待しています。
         </p>
 
