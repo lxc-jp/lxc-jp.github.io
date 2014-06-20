@@ -47,6 +47,164 @@
       <section id="main_content" class="inner">
         <h2>News</h2>
 
+        <h3>LXC 1.0.4 release announcement<p>13th of June 2014</p></h3>
+        <p>This is the fourth bugfix release for the LXC 1.0 series.</p>
+
+        <h4>Changes</h4>
+        <p>
+          <ul>
+            <li>core: Don't call nih_dbus_setup for cgmanager as it's
+                only relevant when using a nih main loop, which we're not.</li>
+            <li>core: Fix uncheck realloc in lxc_info. (found by cppcheck)</li>
+            <li>core: At startup, manually mark every shared mount entry
+                as slave.</li>
+            <li>core: Check for pre-existing /dev symlinks before
+                attempting to create them.</li>
+            <li>core: Fix fd leak. (found by coverity).</li>
+            <li>core: Allow all iX86 strings for lxc.arch.</li>
+            <li>core: Fix building using clang 3.4.</li>
+            <li>core: Fix minor typo in .gitignore.</li>
+            <li>core: Add missing MAX_STACK_DEPTH define on
+                MUTEX_DEBUGGING builds.</li>
+            <li>core: Don't mount /sys/fs/cgroup readonly as this breaks
+                at least mountall.</li>
+            <li>core: Factor out capability parsing logic.</li>
+            <li>core: Tweak the default values of lxc.mount.auto for the
+                cgroup and cgroup-full keys to adapt themselves
+                depending on whether CAP_SYS_ADMIN has been dropped or
+                not.</li>
+            <li>core: Support unprivileged create, clone and destroy
+                with btrfs.</li>
+            <li>core: Support named subsystems with cgmanager.</li>
+            <li>core: Use absolute cgroup paths to switch cgroups at
+                attach with cgmanager. This allows for unprivileged
+                lxc-attach across user sessions of the same user.</li>
+            <li>core: Detect whether cgmanager supports name= subsystems.</li>
+            <li>core: Use the same ifndef/define format for all headers.</li>
+            <li>core: Fix bashism in lxc-devsetup.</li>
+            <li>core: Fix a null check after dereference (identified by
+                coverity).</li>
+            <li>core: Export bdev_specs so that API users can actually use the
+                functions taking it as an argument.</li>
+            <li>core: Don't destroy the container until we've made sure
+                the requested snapshot actually exists.</li>
+            <li>core: Retrieve the container personality over the
+                command interface rather than through /proc. This is
+                required for unprivileged containers attach on the 3.15 kernel
+                and higher as access to /proc/$$/personality is now
+                restricted to root.</li>
+            <li>core: Fix invalid signal number comparison.</li>
+            <li>core: Don't let -lcgmanager end up in LIBS.</li>
+            <li>core: Correct invalid log message when keeping
+                capabilities.</li>
+            <li>core: Fix a crash when attempting to snapshot an invalid
+                container.</li>
+            <li>core: Make it possible for unprivileged containers
+                started by root to mount block devices.</li>
+            <li>core: Improve startup failure mode to hide irrelevant
+                error messages and suggest how to debug the failure.</li>
+            <li>core: Validate start hooks path before startup.</li>
+            <li>core: Log the whole cgroup path on failure.</li>
+
+            <li>apparmor: Allow writes to sem* and msg*. sysctls</li>
+          </ul>
+
+          <ul>
+            <li>doc: Fix typo in lxc-clone man page.</li>
+            <li>doc: Fix puncation marks in Japanese man pages.</li>
+            <li>doc: Fix typo in lxc-ls manpage.</li>
+            <li>doc: Correct license on some files and fix FSF address.</li>
+            <li>doc: Document lxc.mount.entry relative target.</li>
+            <li>doc: Remove TODO file with old items.</li>
+            <li>doc: Fix reference to renamed manpage.</li>
+            <li>doc: Update japanese documentation to be in sync with
+                the english one.</li>
+          </ul>
+
+          <ul>
+            <li>lxc-autostart: Backport the autoboot/autostart change.<br />
+
+                This is required to resolve problems with autostart on
+                systemd systems at least.<br />
+
+                This change adds support for the NULL group in the -g
+                option (identified as a comma without any group name).
+                Add a new special "onboot" group and set the init
+                scripts (sysvinit, systemd and upstart) to all start
+                both the NULL and onboot group.<br />
+
+                This won't cause any visible change to existing users
+                unless they were already using an "onboot" group that wasn't
+                auto-started at boot time.</li>
+
+            <li>lxc-create: Make "none" bdev type work as documented.</li>
+
+            <li>lxc-execute: Fix a memory leak on the exit path.</li>
+
+            <li>lxc-ls: Fix running against nested containers without
+                python support.</li>
+
+            <li>lxc-user-nic: Don't crash on missing bridge.</li>
+          </ul>
+
+          <ul>
+            <li>alpine template: Set correct lxc_arch for x86.</li>
+
+            <li>archlinux template: Add sigpwr handler.</li>
+            <li>archlinux template: Fix lxc.root for btrfs backend.</li>
+
+            <li>download template: Retry the GPG setup step 3 times.</li>
+
+            <li>fedora template: Correct some systemd target setups.</li>
+
+            <li>oracle template: Use db_load from inside the container.</li>
+            <li>oracle template: Fix warnings/errors from some rpm
+                scriptlets.</li>
+            <li>oracle template: Fix lxc-patch.py to be 644 (fixes
+                rpmlint warning).</li>
+            <li>oracle template: Add pts/[1-4] to securetty for
+                libvirt-lxc.</li>
+            <li>oracle template: Set the hostname on systemd systems.</li>
+            <li>oracle template: Fix ssh login under libvirt-lxc.</li>
+
+            <li>plamo template: Don't attempt to configure wireless
+                interfaces.</li>
+
+            <li>sshd template: Use correct lxc-init path.</li>
+          </ul>
+
+          <ul>
+            <li>python3: Slight tweaks to the .py files to work with the
+                unofficial python2.7 binding.</li>
+            <li>python3: Don't fail network test if hwaddr isn't set by
+                the template.</li>
+            <li>python3: Don't require a template name be passed to
+                create().</li>
+            <li>python3: Don't crash on invalid global config keys.</li>
+            <li>python3: Fix crash in snapshot().</li>
+          </ul>
+
+          <ul>
+            <li>tests: Make sure we join all the right cgroups.</li>
+            <li>tests: Workaround race condition in lxc-test-autostart.</li>
+          </ul>
+        </p>
+
+        <p>Those stable fixes were brought to you by 14 individual
+           contributors.</p>
+
+        <h4>Downloads</h4>
+        <p>The release tarballs may be found on our
+           <a href="/downloads">download page</a> and we expect most
+           distributions will very soon ship a packaged version of LXC 1.0.4.
+        </p>
+
+        <p>Should you be interested in individual changes or just
+           looking at the detailed development history, our stable branch is
+           on <a href="https://github.com/lxc/lxc/tree/stable-1.0">Github</a>.
+        </p>
+
+
         <h3><!-- LXC 1.0.3 release announcement<p>8th of April 2014</p> -->LXC 1.0.3 リリースのお知らせ<p>2014 年 4 月 8 日</p></h3>
         <p><!-- This is the third bugfix release for the LXC 1.0 series. -->このリリースは LXC 1.0 シリーズの 3 回目のバグフィックスとなるリリースです。</p>
 
